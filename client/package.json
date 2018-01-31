@@ -1,0 +1,71 @@
+{
+  "name": "react16-router4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "BABEL_ENV=server webpack-dev-server",
+    "build": "BABEL_ENV=server NODE_ENV=production webpack",
+    "lint": "eslint *.js --env node --fix",
+    "test": "BABEL_ENV=test jest",
+    "server": "BABEL_ENV=server babel-node ./build/server.js --out-dir ./dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "jest": {
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/tests/__mocks__/file-mock.js",
+      "\\.(css|less)$": "<rootDir>/tests/__mocks__/style-mock.js"
+    }
+  },
+  "dependencies": {
+    "@babel/core": "7.0.0-beta.37",
+    "@babel/node": "^7.0.0-beta.39",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.37",
+    "@babel/preset-env": "7.0.0-beta.37",
+    "@babel/preset-react": "7.0.0-beta.37",
+    "@babel/register": "7.0.0-beta.37",
+    "autoprefixer": "^7.2.4",
+    "babel-loader": "8.0.0-beta.0",
+    "babel-plugin-css-modules-transform": "^1.4.0",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "copy-webpack-plugin": "^4.3.1",
+    "cryptocurrencies": "^1.2.0",
+    "cryptocurrency-icons": "https://github.com/cjdowner/cryptocurrency-icons.git",
+    "css-loader": "^0.28.8",
+    "eslint": "^4.15.0",
+    "eslint-config-standard": "^11.0.0-beta.0",
+    "eslint-friendly-formatter": "^3.0.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-node": "^5.2.1",
+    "eslint-plugin-promise": "^3.6.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "handlebars": "^4.0.11",
+    "handlebars-loader": "^1.6.0",
+    "html-loader": "^0.5.4",
+    "html-webpack-plugin": "^2.30.1",
+    "jsdom": "^11.6.2",
+    "node-fetch": "^1.7.3",
+    "postcss": "^6.0.16",
+    "postcss-loader": "^2.0.10",
+    "postcss-modules-values": "^1.3.0",
+    "style-loader": "^0.19.1",
+    "stylelint": "^8.4.0",
+    "stylelint-config-standard": "^18.0.0",
+    "stylelint-webpack-plugin": "^0.9.0",
+    "webpack": "3.10.0",
+    "webpack-dev-server": "^2.10.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.0.0-beta.38",
+    "babel-core": "^7.0.0-0",
+    "babel-jest": "^22.1.0",
+    "babel-register": "^6.26.0",
+    "dom-serialize": "^2.2.1",
+    "jest": "^22.1.4",
+    "jest-css-modules": "^1.1.0",
+    "webpack-stats-plugin": "^0.1.5"
+  }
+}

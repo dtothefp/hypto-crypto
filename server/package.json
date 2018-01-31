@@ -1,0 +1,23 @@
+{
+  "name": "react16-router4",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "7.0.0-beta.37",
+    "@babel/preset-env": "7.0.0-beta.37",
+    "@babel/register": "7.0.0-beta.37",
+    "autobahn": "^17.5.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "koa": "^2.4.1",
+    "nodemon": "^1.14.11",
+    "poloniex-api-node": "^1.7.0",
+    "ws": "^4.0.0"
+  }
+}

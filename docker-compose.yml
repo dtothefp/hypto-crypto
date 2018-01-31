@@ -1,0 +1,29 @@
+version: '3'
+services:
+  client:
+    build:
+      context: .
+      dockerfile: ./client/Dockerfile
+    image: react_client
+    container_name: react_client
+    links:
+      - "server:react-server"
+    # volumes:
+      # - ./client/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+    # ports:
+      # - 3000:443 # uncomment when running `docker-compose -f docker-compose.yml ...`
+      # - 80:80
+  server:
+    build:
+      context: .
+      dockerfile: ./server/Dockerfile
+    image: react_server
+    container_name: react_api
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:80
+networks:
+  default:
+    external:
+      name: ${COMPOSE_ENV-dev1}

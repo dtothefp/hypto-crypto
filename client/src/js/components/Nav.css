@@ -1,0 +1,26 @@
+@value colors: '../../css/colors.css';
+@value gray, aqua from colors;
+
+.nav {
+  border-bottom: 1px solid black;
+}
+
+.ul {
+  padding: 0;
+  margin: 0;
+}
+
+.li {
+  background: gray;
+  display: inline-block;
+  border: solid;
+  border-width: 1px 1px 0 1px;
+  margin: 0 5px 0 0;
+  padding: 5px;
+  border-radius: 3px 3px 0 0;
+  cursor: pointer;
+}
+
+.selected {
+  background: aqua;
+}

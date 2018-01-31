@@ -1,0 +1,39 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": "current"
+        },
+        "modules": "commonjs"
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-object-rest-spread",
+    "transform-export-extensions"
+  ],
+  "env": {
+    "test": {
+      "presets": [
+        [
+          "@babel/preset-env",
+          {
+            "modules": "commonjs"
+          }
+        ]
+      ]
+    },
+    "server": {
+      "plugins": [
+        [
+          "css-modules-transform", {
+            "generateScopedName": "[name]_[local]_[hash:base64:5]",
+            "extensions": [".css"]
+          }
+        ]
+      ]
+    }
+  }
+}

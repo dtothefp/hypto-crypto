@@ -1,0 +1,13 @@
+@value colors: './colors.css';
+@value blue, red, green from colors;
+
+#app {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}

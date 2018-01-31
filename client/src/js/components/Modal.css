@@ -1,0 +1,66 @@
+@value colors: '../../css/colors.css';
+@value gray, aqua from colors;
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100vh;
+  cursor: pointer;
+}
+
+.modal:after {
+  content: '';
+  position: absolute;
+  background: grey;
+  opacity: 0.5;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  z-index: 100;
+  cursor: default;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-auto-rows: 1fr;
+}
+
+.content ul {
+  display: flex;
+  flex-direction: column;
+}
+
+.content li {
+  border: 1px solid grey;
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  padding: 5px 5px;
+}
+
+.content li:first-child {
+  background: aqua;
+}
+
+.content li:last-child {
+  background: gray;
+  background-image: url('/img/texture-light.png');
+  flex: 1;
+}
+
+.hide {
+  display: none;
+}

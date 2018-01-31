@@ -1,0 +1,43 @@
+@value colors: '../../css/colors.css';
+@value red, green, gray from colors;
+
+.ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 10px 0;
+  text-align: center;
+  vertical-align: middle;
+  border-radius: 0.6rem;
+  overflow: hidden;
+  background-color: gray;
+  background-image: url('/img/texture-light.png');
+  cursor: pointer;
+}
+
+.li {
+  padding: 2px 0px ;
+}
+
+.hide {
+  display: none;
+}
+
+.gain {
+  animation-duration: 3s;
+  animation-name: gain-anim;
+}
+
+.loss {
+  animation-duration: 3s;
+  animation-name: loss-anim;
+}
+
+@keyframes loss-anim {
+  0%     {background-color: red;}
+  100.0%  {background-color: transparent;}
+}
+
+@keyframes gain-anim {
+  0%     {background-color: green;}
+  100.0%  {background-color: transparent;}
+}
