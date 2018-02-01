@@ -12,10 +12,11 @@ It is useful but not necessary to install [Docker](https://docs.docker.com/insta
 docker network create dev1
 
 # DEV build - serve and develop with webpack-dev-server
-docker-compose up
+docker-compose up client
 
 # PROD build - build static assets with webpack and serve with NGINX
-docker-compose up
+docker-compose -f docker-compose.yml build --no-cache client
+docker-compose -f docker-compose.yml up client # navigate to http://localhost
 ```
 
 - Node / NPM Instructions
@@ -37,7 +38,7 @@ cd client/dist
 python -m SimpleHTTPServer 8080
 ```
 
-In all examples above navigate to http://localhost:8080
+In all examples except Docker prod above navigate to http://localhost:8080
 
 ### The Good
 - Created isomorphic build for JS components, i.e. render JS to static HTML in the webpack build process.
@@ -54,6 +55,7 @@ In all examples above navigate to http://localhost:8080
 - Only tested components because they encompass logic from other services, utilities, and flux modules. Therefore, these are more of integration tests rather than unit.
 - Could have used the History API and/or location hash to maintain state of the SPA, i.e. on page refresh re-open a previously opened model, or return to the nav tab that was selected.
 - I didn't optimize for old browsers, i.e. no polyfills for fetch and es6 features.
+- The Modal component doesn't live update when it's open, the component needs to update with the flux store.
 
 ### The Ugly
 - Even thought the HTML is rendered from the JS I make no attempt to diff it and attach listeners / DOM elements effectively. Essentially, I blow away the entire #app component with an identical new one.
@@ -62,6 +64,10 @@ In all examples above navigate to http://localhost:8080
 
 ### TODO's if I could use frameworks and had more time
 - History API / routing
+- Create backend and communicate with websockets.
 - Code splitting of CSS and JS
 - Polyfills and potentially creating specific JS bundles for old browsers and serving them in HTML appropriately.
 - DOM diffing / intelligent replacement of isomorphically rendered HTML once JS loads.
+- Use SVG sprite for crypto coin icons or inline them.
+- Add E2E tests with Selenium / Headless Chrome / BrowserStack
+- Probably lots of other things I'm not thinking of right now.

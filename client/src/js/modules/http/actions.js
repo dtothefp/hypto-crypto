@@ -15,7 +15,9 @@ export const get = async ({getState, dispatch}) => {
   let data;
 
   try {
-    data = await http();
+    const {API: url} = process.env;
+
+    data = await http({url});
   } catch (err) {
     return dispatch({type: ERROR});
   }

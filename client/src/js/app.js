@@ -7,10 +7,11 @@ const store = createStore(
   JSON.parse(global.STORE_STATE || '{}')
 );
 const app = new App(store);
+const {INTERVAL} = process.env;
 
 setInterval(() => {
   store.dispatch(get);
-}, 5000);
+}, INTERVAL);
 
 app.children.forEach(component => {
   store.subscribe(state => component.update(state));

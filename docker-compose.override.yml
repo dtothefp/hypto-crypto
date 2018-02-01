@@ -3,15 +3,17 @@ services:
   client:
     build:
       dockerfile: ./client/Dockerfile.dev
+    container_name: crypto_client_dev
     ports:
       - 8080:8080
+      - 8000:8000
     volumes:
       - ./client:/usr/src/app
       - /usr/src/app/node_modules
-      - /usr/src/app/dist
   server:
     environment:
       NODE_ENV: development
+    container_name: crypto_api_dev
     volumes:
       - ./server:/usr/src/app
       - /usr/src/app/node_modules

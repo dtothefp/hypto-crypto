@@ -1,5 +1,4 @@
 sudo: required
-language: node_js
 services:
   - docker
 env:
@@ -17,4 +16,6 @@ before_install:
   - sudo mv docker-compose /usr/local/bin
 script:
   - docker network create dev1
-  - docker-compose up
+  - docker-compose -f docker-compose.yml build --no-cache
+after_script:
+  - if [ -n "$TRAVIS_TAG" ] || [ "$TRAVIS_BRANCH" = "master" ]; then ./client/deploy-docker.sh ;fi
