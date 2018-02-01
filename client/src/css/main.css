@@ -1,3 +1,4 @@
+@import-normalize;
 @value colors: './colors.css';
 @value blue, red, green from colors;
 

@@ -9,7 +9,7 @@
  */
 export default function ({
   method = 'GET',
-  url = 'https://poloniex.com/public?command=returnTicker',
+  url,
   ...options
 } = {}) {
   return fetch(url, {
