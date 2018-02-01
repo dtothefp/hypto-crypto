@@ -1,5 +1,12 @@
 import log from '../utils/log';
 
+/**
+ * Simplistic representation of Redux store
+ *
+ * @param {object} reducer key/value pairs of reducer functions
+ * @param {object} initialState
+ * @returns {object}
+ */
 export default function store (reducer, initialState = {}) {
   const listeners = [];
   let state = initialState;

@@ -1,5 +1,11 @@
 /**
- * typeOf
+ * @fileOverview Simplistic Vanilla JS attempt at React like components
+ * Heavily influenced by {@link https://hackernoon.com/how-i-converted-my-react-app-to-vanillajs-and-whether-or-not-it-was-a-terrible-idea-4b14b1b2faff}
+ *
+ */
+
+/**
+ * Simplistic type checking differentiating JS objects
  *
  * @param {*} target
  * @returns {string}
@@ -19,7 +25,7 @@ function typeOf (target) {
 }
 
 /**
- * appendChild
+ * Append children based upon type
  *
  * @param {HTMLElement} el
  * @param {Array<Array|HTMLElement|String>} children
@@ -46,7 +52,7 @@ function appendChild (el, children) {
 }
 
 /**
- * addStyles
+ * Add inline styles to DOM elements
  *
  * @param {HTMLElement} el
  * @param {Object|undefined} styles
@@ -63,7 +69,8 @@ function addStyles (el, styles) {
 }
 
 /**
- * createElement
+ * Create a DOM element, allowing for various HTML attributes
+ * and nesting elements
  *
  * @param {string} tag the html tag name
  * @param {string|array|object|HTMLELement} props

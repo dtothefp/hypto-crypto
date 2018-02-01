@@ -1,11 +1,12 @@
 import crypto from '../utils/crypto';
 import {div, ul, li} from '../utils/elements';
 import img from '../utils/make-image';
-import {close} from '../modules/modal/actions';
+import {close, move} from '../modules/modal/actions';
 import styles from './Modal.css';
 
 export default class Modal {
   constructor (state = {}, store) {
+    this.state = state;
     this.el = this.render(state);
     this.store = store;
     this.listener = this.listener.bind(this);
@@ -14,9 +15,15 @@ export default class Modal {
   listener (e) {
     const {target} = e;
     const isModal = this.el === target;
+    const isForward = target.classList.contains(styles.forward);
+    const isBack = target.classList.contains(styles.back);
 
     if (isModal) {
       this.store.dispatch(close);
+    } else if (isForward) {
+      this.store.dispatch(move('forward'));
+    } else if (isBack) {
+      this.store.dispatch(move('back'));
     }
   }
 
@@ -31,6 +38,7 @@ export default class Modal {
   update (state) {
     this.el = this.render(state);
 
+    this.state = state;
     return this.el;
   }
 
@@ -44,6 +52,8 @@ export default class Modal {
   render (state) {
     const isActive = state.modal && state.modal.active === true;
     const isOpen = this.el && !this.el.classList.contains(styles.hide);
+    const isDiff = state.modal.item && state.modal.item !== this.state.modal.item;
+    const shouldUpdate = (isActive && !isOpen) || isDiff;
 
     const className = [
       styles.hide,
@@ -52,7 +62,7 @@ export default class Modal {
 
     const el = this.el || div({className});
 
-    if (isActive && !isOpen) {
+    if (shouldUpdate) {
       el.classList.remove(styles.hide);
 
       const {item} = state.modal;
@@ -60,17 +70,24 @@ export default class Modal {
       const itemData = data[item];
       const [symbol] = item.split('_').slice(-1);
 
-      el.appendChild(
-        div({className: styles.content},
-          this.modalItem({title: 'coin', data: img(symbol)}),
-          this.modalItem({title: 'symbol', data: symbol}),
-          this.modalItem({title: 'name', data: crypto[symbol]}),
-          this.modalItem({title: 'price', data: itemData.last}),
-          this.modalItem({title: 'volume', data: itemData.quoteVolume}),
-          this.modalItem({title: 'change', data: itemData.percentChange})
-        )
+      const content = div({className: styles.content},
+        div({className: styles.back}),
+        this.modalItem({title: 'coin', data: img(symbol)}),
+        this.modalItem({title: 'symbol', data: symbol}),
+        this.modalItem({title: 'name', data: crypto[symbol]}),
+        this.modalItem({title: 'price', data: itemData.last}),
+        this.modalItem({title: 'volume', data: itemData.quoteVolume}),
+        this.modalItem({title: 'change', data: itemData.percentChange}),
+        div({className: styles.forward})
       );
-      this.addListener(el);
+      const child = el.firstChild;
+
+      if (child) {
+        el.replaceChild(content, child);
+      } else {
+        el.appendChild(content);
+        this.addListener(el);
+      }
     } else if (!isActive && isOpen) {
       this.removeListener(el);
       this.el.classList.add(styles.hide);

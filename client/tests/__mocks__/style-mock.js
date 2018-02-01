@@ -6,7 +6,8 @@ const classes = [
   'gain',
   'loss',
   'content',
-  'nav'
+  'nav',
+  'selected'
 ];
 
 module.exports = classes.reduce((acc, name) => ({

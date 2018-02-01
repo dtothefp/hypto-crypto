@@ -40,6 +40,9 @@ export default class Nav {
 
   render (state) {
     const {nav: navState} = state;
+
+    if (!navState) return nav({className: styles.nav});
+
     const {items, selected} = navState;
     let el;
 
@@ -52,12 +55,19 @@ export default class Nav {
     });
 
     if (this.el) {
-      const unorderedList = this.el.firstElementChild;
-      const previousListItems = unorderedList.children;
+      const child = this.el.firstChild;
 
-      listItems.forEach((nextListItem, i) => {
-        unorderedList.replaceChild(nextListItem, previousListItems[i]);
-      });
+      if (child) {
+        const previousListItems = child.children;
+
+        listItems.forEach((nextListItem, i) => {
+          child.replaceChild(nextListItem, previousListItems[i]);
+        });
+      } else {
+        this.el.appendChild(
+          ul({className: styles.ul}, listItems)
+        );
+      }
     } else {
       el = nav({className: styles.nav},
         ul(

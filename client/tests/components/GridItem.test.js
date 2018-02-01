@@ -1,9 +1,7 @@
-import serialize from 'dom-serialize';
 import GridItem from '../../src/js/components/GridItem';
 
 describe('#GridItem', () => {
   const title = 'BTC_ETH';
-  const selected = 'BTC';
   const change = '0';
   const gain = '1';
   const loss = '-1';
