@@ -56,6 +56,7 @@ In all examples except Docker prod above navigate to http://localhost:8080
 - Could have used the History API and/or location hash to maintain state of the SPA, i.e. on page refresh re-open a previously opened model, or return to the nav tab that was selected.
 - I didn't optimize for old browsers, i.e. no polyfills for fetch and es6 features.
 - The Modal component doesn't live update when it's open, the component needs to update with the flux store.
+- Comment the component code.
 
 ### The Ugly
 - Even thought the HTML is rendered from the JS I make no attempt to diff it and attach listeners / DOM elements effectively. Essentially, I blow away the entire #app component with an identical new one.
@@ -69,5 +70,6 @@ In all examples except Docker prod above navigate to http://localhost:8080
 - Polyfills and potentially creating specific JS bundles for old browsers and serving them in HTML appropriately.
 - DOM diffing / intelligent replacement of isomorphically rendered HTML once JS loads.
 - Use SVG sprite for crypto coin icons or inline them.
-- Add E2E tests with Selenium / Headless Chrome / BrowserStack
+- Add E2E tests with Selenium / Headless Chrome / BrowserStack.
+- Automate generation of docs with JSDoc or use something declarative like TypeScript.
 - Probably lots of other things I'm not thinking of right now.
