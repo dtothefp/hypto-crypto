@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "BABEL_ENV=server webpack-dev-server",
-    "build": "BABEL_ENV=server NODE_ENV=production webpack",
-    "lint": "eslint *.js --env node --fix",
-    "test": "BABEL_ENV=test jest",
-    "server": "BABEL_ENV=server babel-node ./build/server.js --out-dir ./dist"
+    "start": "npm-run-all clean lint && BABEL_ENV=server webpack-dev-server",
+    "build": "npm-run-all clean lint && BABEL_ENV=server NODE_ENV=production webpack",
+    "clean": "rimraf ./dist",
+    "lint": "npm-run-all lint:*",
+    "lint:build": "eslint *.js --env node --fix",
+    "lint:test": "eslint -c ./tests/.eslintrc tests/**/*.js  --env node --fix",
+    "test": "yarn lint:test && BABEL_ENV=test jest"
   },
   "author": "",
   "license": "ISC",
@@ -64,8 +66,11 @@
     "babel-jest": "^22.1.0",
     "babel-register": "^6.26.0",
     "dom-serialize": "^2.2.1",
+    "eslint-plugin-jest": "^21.7.0",
     "jest": "^22.1.4",
     "jest-css-modules": "^1.1.0",
+    "npm-run-all": "^4.1.2",
+    "rimraf": "^2.6.2",
     "webpack-stats-plugin": "^0.1.5"
   }
 }

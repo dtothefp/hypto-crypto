@@ -32,8 +32,9 @@
   z-index: 100;
   cursor: default;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   grid-auto-rows: 1fr;
+  background: transparent;
 }
 
 .content ul {
@@ -63,4 +64,33 @@
 
 .hide {
   display: none;
+}
+
+.back, .forward {
+  position: relative;
+  background: transparent;
+  padding: 0 20px;
+}
+
+.back:before {
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-right:10px solid aqua;
+}
+
+.forward:after {
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 10px solid aqua;
+}
+
+.back:before, .forward:after {
+  content: '';
+  cursor: pointer;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
 }

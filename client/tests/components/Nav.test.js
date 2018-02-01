@@ -1,4 +1,3 @@
-import serialize from 'dom-serialize';
 import Nav from '../../src/js/components/Nav';
 import createStore from '../../src/js/modules/bootstrap';
 import {set, select} from '../../src/js/modules/nav/actions';
@@ -9,32 +8,36 @@ describe('#Modal', () => {
     ...acc,
     [item]: item
   }), {});
-  let item, store, el;
+  let item, store;
 
   beforeEach(() => {
     store = createStore();
     item = new Nav(store.getState(), store);
-    el = document.createElement('div');
-    el.appendChild(item.el);
     store.subscribe((state) => item.update(state));
   });
 
   test('it should set the nav items', () => {
-    expect(item.el.querySelector('ul').children.length).toBeFalsy();
+    expect(item.el.firstChild).toBeFalsy();
 
     store.dispatch(set(data));
 
-    [...item.el.querySelector('ul').children].forEach((child, i) => {
+    let children = [...item.el.querySelector('ul').children];
+
+    children.forEach((child, i) => {
       const [symbol] = items[i].split('_');
 
       expect(child.textContent).toBe(symbol);
     });
 
-    // expect(item.el.children.length).toBeTruthy();
+    expect(children[0].classList.contains('selected')).toBeTruthy();
 
-    // store.dispatch(close);
+    const [nextItem] = items[1].split('_');
 
-    // expect(item.el.children.length).toBeFalsy();
-    // expect(item.el.classList.contains('hide')).toBeTruthy();
+    store.dispatch(select(nextItem));
+
+    children = [...item.el.querySelector('ul').children];
+
+    expect(children[0].classList.contains('selected')).toBeFalsy();
+    expect(children[1].classList.contains('selected')).toBeTruthy();
   });
 });

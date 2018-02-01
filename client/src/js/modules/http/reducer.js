@@ -9,10 +9,26 @@ export default function (state = {}, action = {}) {
       newState = Object.assign({}, state, {status: 'pending'});
       break;
     case actions.SUCCESS:
-      newState = {status: 'success', data};
+      newState = Object.assign({}, state, {status: 'success', data});
+
+      if (!state.groups) {
+        const groups = Object.keys(data).reduce((acc, key) => {
+          const [prefix, suffix] = key.split('_');
+
+          if (!acc[prefix]) {
+            acc[prefix] = [];
+          }
+
+          acc[prefix].push(suffix);
+
+          return acc;
+        }, {});
+
+        Object.assign(newState, {groups});
+      }
       break;
     case actions.ERROR:
-      newState = {status: 'error', message};
+      newState = Object.assign({}, state, {status: 'error', message});
       break;
   }
 

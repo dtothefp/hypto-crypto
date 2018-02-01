@@ -8,7 +8,7 @@ import StyleLintPlugin from 'stylelint-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import formatter from 'eslint-friendly-formatter';
 import CopyWebpackPlugin from 'copy-webpack-plugin';
-import nodeFetch from 'node-fetch'
+import nodeFetch from 'node-fetch';
 import {JSDOM} from 'jsdom';
 import {get} from './src/js/modules/http/actions';
 import createStore from './src/js/modules/bootstrap';
@@ -69,7 +69,7 @@ const extract = (loaders) => {
     fallback: 'style-loader',
     use: loaders.splice(-2)
   });
-}
+};
 
 export default async () => {
   await store.dispatch(get);
@@ -186,5 +186,5 @@ export default async () => {
       host: '0.0.0.0'
     },
     devtool: isDev ? 'eval-source-map' : 'source-map'
-  }
+  };
 };
