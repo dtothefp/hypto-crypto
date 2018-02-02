@@ -8,8 +8,8 @@ import {img} from './elements';
  * @returns {HTMLElement}
  */
 export default function (symbol) {
-  const url = `/img/icons/${symbol.toLowerCase()}.svg`;
-  const fallbackUrl = '/img/icons/btc.svg';
+  const url = `img/icons/${symbol.toLowerCase()}.svg`;
+  const fallbackUrl = 'img/icons/btc.svg';
   const image = img({src: url});
   let errorCount = 0;
 
