@@ -1,6 +1,8 @@
 #!/bin/sh
 set -o errexit
 
+cd /www/data
+
 git init
 
 git config --global user.email "travis@travis.org"
