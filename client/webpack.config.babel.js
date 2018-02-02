@@ -18,7 +18,8 @@ import App from './src/js/containers/App';
 
 const INTERVAL = 5000;
 const API = 'https://poloniex.com/public?command=returnTicker';
-const {NODE_ENV} = process.env;
+const {NODE_ENV, TRAVIS_BRANCH} = process.env;
+const publicPath = TRAVIS_BRANCH === 'gh-pages' ? '/hypto-crypto/' : '/';
 const isDev = NODE_ENV === 'development';
 const base = path.resolve.bind(path, __dirname);
 const {window} = new JSDOM();
@@ -120,6 +121,10 @@ export default async () => {
       {
         from: base('src/img'),
         to: base('dist/img')
+      },
+      {
+        from: base('src/templates/favicon.ico'),
+        to: base('dist/favicon.ico')
       }
     ]),
     new StatsWriterPlugin({
@@ -141,6 +146,7 @@ export default async () => {
     entry: ['./src/js/app.js'],
     output: {
       path: base('dist'),
+      publicPath,
       filename: 'js/[name].[chunkhash].js'
     },
     module: {
@@ -184,6 +190,15 @@ export default async () => {
               loader: 'html-loader'
             }
           ]
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/,
+          loader: 'file-loader',
+          query: {
+            limit: 8192,
+            name: 'img/[name].[ext]',
+            publicPath
+          }
         },
         {
           test: /\.css$/,

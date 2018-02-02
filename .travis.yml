@@ -18,4 +18,9 @@ script:
   - docker network create dev1
   - docker-compose -f docker-compose.yml build --no-cache
 after_script:
-  - if [ -n "$TRAVIS_TAG" ] || [ "$TRAVIS_BRANCH" = "master" ]; then ./client/deploy-docker.sh ;fi
+  - if [ -n "$TRAVIS_TAG" ] && [ "$TRAVIS_BRANCH" = "master" ];
+    ./client/deploy-docker.sh;
+    fi
+  - if [ "$TRAVIS_BRANCH" = "gh-pages" ];
+    then docker run -e GITHUB_TOKEN crypto_client /www/data/deploy.sh;
+    fi

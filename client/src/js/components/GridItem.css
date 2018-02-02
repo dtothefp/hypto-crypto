@@ -10,7 +10,7 @@
   border-radius: 0.6rem;
   overflow: hidden;
   background-color: gray;
-  background-image: url('/img/texture-light.png');
+  background-image: url('../../img/texture-light.png');
   cursor: pointer;
 }
 
