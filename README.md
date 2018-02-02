@@ -7,6 +7,7 @@ Vanilla JS front-end application using the [Poloniex API](https://poloniex.com/s
 It is useful but not necessary to install [Docker](https://docs.docker.com/install/) and [dockerc-compose](https://docs.docker.com/compose/install/).
 
 - Docker Instructions
+  - Check the release https://github.com/dtothefp/hypto-crypto/releases/tag/0.1.0
 ```sh
 # only do this once
 docker network create dev1
@@ -17,6 +18,9 @@ docker-compose up client
 # PROD build - build static assets with webpack and serve with NGINX
 docker-compose -f docker-compose.yml build --no-cache client
 docker-compose -f docker-compose.yml up client # navigate to http://localhost
+
+# or download and run the Docker image from [Docker Hub](https://hub.docker.com/r/dtothefp/crypto_client/)
+docker run -p 8080:3000 dtothefp/crypto_client:0.1.0
 ```
 
 - Node / NPM Instructions
@@ -72,4 +76,5 @@ In all examples except Docker prod above navigate to http://localhost:8080
 - Use SVG sprite for crypto coin icons or inline them.
 - Add E2E tests with Selenium / Headless Chrome / BrowserStack.
 - Automate generation of docs with JSDoc or use something declarative like TypeScript.
+- In progress getting my `gh-pages` deploy for the static directory working.
 - Probably lots of other things I'm not thinking of right now.
