@@ -6,8 +6,9 @@ Vanilla JS front-end application using the [Poloniex API](https://poloniex.com/s
 ## Install and Run
 It is useful but not necessary to install [Docker](https://docs.docker.com/install/) and [dockerc-compose](https://docs.docker.com/compose/install/).
 
+- Check the release https://github.com/dtothefp/hypto-crypto/releases/tag/0.1.0 for the Docker image url or the zip directory to download and serve statically.
+
 - Docker Instructions
-  - Check the release https://github.com/dtothefp/hypto-crypto/releases/tag/0.1.0
 ```sh
 # only do this once
 docker network create dev1
